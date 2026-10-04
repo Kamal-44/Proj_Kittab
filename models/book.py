@@ -11,6 +11,9 @@ class Book(SQLModel,table=True):
 
     #Foreign key
     user_id : int=Field(foreign_key="user.id")
+    # table name is User but database usually eep the names in lowercase that's why we have used user.id
+    # in case we want to use User.id then in User table we need to give
+    # __tablename__ = "User"  in line number 6
     owner : Optional["User"] = Relationship(back_populates="books")
 
 class BookCreate(SQLModel):
